@@ -14,12 +14,11 @@ import {
   Button,
 } from "reactstrap";
 import Base from "../components/Base";
-import { loginUser } from "../services/user-service";
+import { loadAllAccount, loginUser, loadAccount} from "../services/user-service";
 import { doLogin } from "../auth";
 import { useNavigate } from "react-router-dom";
 import userContext from "../context/userContext";
 import { useContext } from "react";
-
 const Login = () => {
   const userContxtData = useContext(userContext);
 
@@ -84,6 +83,20 @@ const Login = () => {
           toast.error("Something went wrong  on sever !!");
         }
       });
+
+
+      loadAllAccount().then((data)=>{
+        const Allaccount = JSON.stringify(data);
+        localStorage.setItem('Allaccount', Allaccount);
+        const accounts = JSON.parse(localStorage.getItem("Allaccount"));
+
+
+     }).catch(error=>{
+       console.log(error);
+     })
+
+     
+
   };
 
   return (

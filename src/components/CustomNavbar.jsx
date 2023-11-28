@@ -30,6 +30,9 @@ const CustomNavbar = () => {
                 login: false
             })
 
+            localStorage.removeItem('account','Allaccount');
+            localStorage.removeItem('Allaccount');
+
             navigate("/")
         })
     }
@@ -68,6 +71,11 @@ const CustomNavbar = () => {
                         <NavItem>
                             <NavLink tag={ReactLink} to="/services" >
                                 Services
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={ReactLink} to="/TransferMoney" >
+                            Transfer Money
                             </NavLink>
                         </NavItem>
 

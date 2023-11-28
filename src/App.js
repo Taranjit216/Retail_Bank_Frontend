@@ -16,7 +16,8 @@ import Userdashboard from "./pages/user-routes/Userdashboard";
 import Privateroute from "./components/Privateroute";
 import ProfileInfo from "./pages/user-routes/ProfileInfo";
 import UserProvider from "./context/UserProvider";
-
+import TransferMoney from './components/TransferMoney';
+import BankAccount from './components/BankAccount';
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/TransferMoney" element={<TransferMoney />} />
+          <Route path="/BankAccount" element={<BankAccount />} />
           {/* <Route path="/posts/:postId" element={<PostPage />} />
           <Route path="/categories/:categoryId" element={<Categories />} /> */}
 
