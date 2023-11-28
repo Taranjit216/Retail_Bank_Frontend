@@ -30,8 +30,9 @@ const CustomNavbar = () => {
                 login: false
             })
 
-            localStorage.removeItem('account','Allaccount');
-            localStorage.removeItem('Allaccount');
+            // localStorage.removeItem('account','Allaccount');
+            // localStorage.removeItem('Allaccount');
+            localStorage.clear();
 
             navigate("/")
         })

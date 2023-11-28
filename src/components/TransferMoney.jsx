@@ -1,7 +1,7 @@
 import userContext from "../context/userContext"
 import Base from "./Base"
 import { useEffect, useState } from "react";
-import { loadAllAccount, transferMoney } from "../services/user-service";
+import { loadAllAccount, transferMoney1, transferMoney2 } from "../services/user-service";
 import { Button, Card, CardBody, CardFooter, Col, Container, Input, Row, Table } from 'reactstrap';
 import { toast } from "react-toastify";
 
@@ -12,6 +12,24 @@ const TransferMoney = () => {
       balance:'',
       
     })
+    // const [balance1, setBalance1]=useState({
+    //   account_id:'0',
+    //   balance:'',
+      
+    // })
+    // const [balance2, setBalance2]=useState({
+    //   account_id:'0',
+    //   balance:'',
+      
+    // })
+    const balance1 = {
+      account_id:'',
+      balance:'',
+    }
+    const balance2 ={
+      account_id:'',
+      balance:'',
+    }
 
     const [error, setError] = useState({
       errors: {},
@@ -20,33 +38,49 @@ const TransferMoney = () => {
 
     const handleChange=(event,property)=>{
       setData({...data,[property]:event.target.value})
+      const acc = JSON.stringify(data);
+       localStorage.setItem('transfer', acc);
     }
 
     const account = JSON.parse(localStorage.getItem("Allaccount"));
     const currAccount = JSON.parse(localStorage.getItem("account"));
 
-    var bal1="", bal2="";
+    var bal1 = { bal1:"" }
+    var bal2 = {  bal2:"" }
     
 
     const submitForm = (event) => {
       event.preventDefault();
-      console.log(data);
+      //console.log(data);
 
-      if(data.account_id!='0')
-      { 
+      if(data.account_id=0){
+        toast.success("account 0 does'nt exist");
+        return;
+      }
+
+      // if(data.account_id!='0')
+      // { 
         var num1 = parseInt(data.account_id)-1;
-        bal1 = parseInt(account[num1].balance) + parseInt(data.balance);
-       setData({...data, balance:bal1});
-       console.log(bal1)
-      }
-      else{
-        bal1 = parseInt(account[0].balance) + parseInt(data.balance);
-       setData({...data, balance:bal1});
-       console.log(bal1)
-      }
+        bal1.bal1 = parseInt(account[num1].balance) + parseInt(data.balance);
+      // setBalance1({...balance1,account_id:data.account_id, balance:bal1});
+        balance1.account_id = data.account_id;
+        balance1.balance = bal1.bal1;
+      const acc1 = JSON.stringify(balance1);
+       localStorage.setItem('balance1', acc1);
+      //  console.log("this is money transfer",balance1);
+      // }
+      // else{
+      //   bal1.bal1 = parseInt(account[0].balance) + parseInt(data.balance);
+      //   //setBalance1({...balance1,account_id:data.account_id, balance:bal1});
+      //   balance1.account_id = data.account_id;
+      //   balance1.balance = bal1.bal1;
+      //   const acc1 = JSON.stringify(balance1);
+      //  localStorage.setItem('balance1', acc1);
+      //  // console.log("this is money transfer",balance1)
+      // }
   
       //call server api for sending data
-      transferMoney(data.account_id,data)
+      transferMoney1(balance1.account_id,balance1)
         .then((resp) => {
           console.log(resp);
           console.log("success");
@@ -66,20 +100,25 @@ const TransferMoney = () => {
           });
         });
 
-       
-      bal2 = parseInt(account[0].balance) - parseInt(data.balance);
-       setData({...data, balance:bal2});
-       console.log(bal2)
+      const a = JSON.parse(localStorage.getItem('data')).user.id; 
+      var b = a-1;
+      bal2.bal2 = parseInt(account[b].balance) - parseInt(data.balance);
+      //setBalance2({...balance2,account_id:data.account_id, balance:bal2});
+      balance2.account_id = data.account_id;
+      balance2.balance = bal2.bal2;
+      const acc2 = JSON.stringify(balance2);
+      localStorage.setItem('balance2', acc2);
+      // console.log("this is money debited",balance2)
       
 
       //   //call server api for sending data
-      transferMoney(currAccount[0].account_id,data)
+      transferMoney2(currAccount[0].account_id,balance2)
       .then((resp) => {
         console.log(resp);
-        // setData({
-        //   account_id:'',
-        //   balance:'',
-        // });
+        setData({
+          account_id:'',
+          balance:'',
+        });
       })
       .catch((error) => {
         console.log(error);

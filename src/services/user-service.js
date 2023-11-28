@@ -4,8 +4,11 @@ export const signUp = (user) => {
   return myAxios.post("/auth/register", user).then((response) => response.data);
 };
 
-export const transferMoney = (accountId, balance) => {
-  return myAxios.put(`/accounts/${accountId}`,balance).then((response) => response.data);
+export const transferMoney1 = (accountId, balance) => {
+  return myAxios.put(`/accounts/${accountId}`,balance).then((a) => a.data);
+};
+export const transferMoney2 = (accountId, balance) => {
+  return myAxios.put(`/accounts/${accountId}`,balance).then((b) => b.data);
 };
 
 export const loginUser = (loginDetail) => {
