@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 const TransferMoney = () => {
 
     const [data, setData]=useState({
-      account_id:'0',
+      account_id:'',
       balance:'',
       
     })
@@ -148,7 +148,7 @@ const TransferMoney = () => {
                             <div className = "card col-md-6 offset-md-3 offset-md-3">
                                 <h3 className="text-center">Update Employee</h3>
                                 <div className = "card-body">
-                                  {JSON.stringify(data)}
+                                  {/* {JSON.stringify(data)} */}
                                     <form onSubmit={submitForm}>
                                         <div className = "form-group">
                                             <label> Account_Id: </label>

@@ -18,6 +18,7 @@ import ProfileInfo from "./pages/user-routes/ProfileInfo";
 import UserProvider from "./context/UserProvider";
 import TransferMoney from './components/TransferMoney';
 import BankAccount from './components/BankAccount';
+import CreateFd from './pages/CreateFd';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/TransferMoney" element={<TransferMoney />} />
           <Route path="/BankAccount" element={<BankAccount />} />
+          <Route path="/CreateFd" element={<CreateFd />} />
           {/* <Route path="/posts/:postId" element={<PostPage />} />
           <Route path="/categories/:categoryId" element={<Categories />} /> */}
 

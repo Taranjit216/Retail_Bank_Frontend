@@ -79,7 +79,11 @@ const CustomNavbar = () => {
                             Transfer Money
                             </NavLink>
                         </NavItem>
-
+                        <NavItem>
+                            <NavLink tag={ReactLink} to="/CreateFd" >
+                            Create Fd
+                            </NavLink>
+                        </NavItem>
 
 
                         <UncontrolledDropdown

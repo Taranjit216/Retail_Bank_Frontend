@@ -29,3 +29,6 @@ export const loadAllAccount = () => {
   return myAxios.get(`/accounts`).then((response) => response.data);
 };
 
+export const createFd = (accountId,fd) => {
+  return myAxios.post(`account/${accountId}/fds`, fd).then((response) => response.data);
+};
